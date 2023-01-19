@@ -3,5 +3,4 @@
 - hosts: debian-servers
   become: true
   roles:
-    - role: Prometheus
-      tags: prom
+    - Prometheus
