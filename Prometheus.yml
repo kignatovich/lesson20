@@ -1,5 +1,4 @@
 ---
-
 - hosts: debian-servers
   become: true
   roles:
