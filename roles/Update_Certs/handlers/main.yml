@@ -1,0 +1,25 @@
+---
+# handlers file for Update_Certs
+- name: reload httpd
+  systemd:
+    name: httpd
+    state: restarted
+  when:
+    services_state.ansible_facts.services['httpd.service'].state == 'running'
+  ignore_errors: yes
+
+- name: reload nginx
+  systemd:
+    name: nginx
+    state: restarted
+  when:
+    services_state.ansible_facts.services['nginx.service'].state == 'running'
+  ignore_errors: yes
+
+- name: reload apache2
+  systemd:
+    name: apache2
+    state: restarted
+  when:
+    services_state.ansible_facts.services['apache2.service'].state == 'running'
+  ignore_errors: yes

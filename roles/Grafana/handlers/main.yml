@@ -1,0 +1,10 @@
+---
+# handlers file for Grafana
+- name: firewalld systemd restart
+  command: firewall-cmd --reload
+
+- name: grafana systemd
+  systemd:
+    name: grafana-server
+    enabled: yes
+    state: started

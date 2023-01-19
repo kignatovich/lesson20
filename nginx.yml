@@ -1,0 +1,14 @@
+---
+- hosts: redhat-servers
+  become: true
+  vars:
+    nginx_user: nginx
+  roles:
+   - epel
+   - nginx
+
+- hosts: debian-servers
+  become: true
+   - nginx
+  vars:
+    nginx_user: www-data

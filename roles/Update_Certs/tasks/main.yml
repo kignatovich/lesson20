@@ -1,0 +1,28 @@
+---
+# tasks file for Update_Certs
+- name: Register System Services
+  service_facts:
+  register: services_state
+
+- name: Create Directories For Certs
+  file:
+    path: '/etc/ssl/web'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy Cert File If Different
+  copy:
+    src: "{{ item }}"
+    dest: /etc/ssl/dmosk
+    remote_src: no
+    mode: 0644
+    owner: root
+    group: root
+  with_fileglob:
+    - files/*
+  notify:
+    - reload httpd
+    - reload nginx
+    - reload apache2
