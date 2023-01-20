@@ -6,9 +6,16 @@
   roles:
    - epel
    - nginx
+   - Grafana
+   - Update_Certs
+   - Prometheus
 
 - hosts: debian-servers
   become: true
-   - nginx
   vars:
     nginx_user: www-data
+  roles:
+   - nginx
+   - Grafana
+   - Update_Certs
+   - Prometheus
